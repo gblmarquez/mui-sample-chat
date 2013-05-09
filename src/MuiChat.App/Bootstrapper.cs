@@ -7,14 +7,11 @@
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
     using System.ComponentModel.Composition.Primitives;
-    using System.IO;
     using System.Linq;
-    using System.Reflection;
 
     public class AppBootstrapper : Bootstrapper<IShellViewModel>
     {
         private static CompositionContainer _container;
-        private static AggregateCatalog _globalCatalog;
 
         static AppBootstrapper()
         {
@@ -40,14 +37,11 @@
                 @"(([A-Za-z_]\w*\.)*)?ViewModels\.([A-Za-z_]\w*\.)*[A-Za-z_]\w*ViewModel$"
             );
 
-            _globalCatalog = new AggregateCatalog(
+            _container = new CompositionContainer(
+                    new AggregateCatalog(
                     new AssemblyCatalog(typeof(IShellViewModel).Assembly),
                     AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>().FirstOrDefault()
-            );
-
-            _container = new CompositionContainer(
-                    _globalCatalog,
-                    new ConfigurationExportProvider(new FileConfigurationSource())
+                )
             );
 
             var batch = new CompositionBatch();
