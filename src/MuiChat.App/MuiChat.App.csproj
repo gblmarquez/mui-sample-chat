@@ -39,9 +39,6 @@
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\packages\ModernUI.WPF.1.0.3\lib\net40\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
-    <Reference Include="Matrix">
-      <HintPath>Z:\Tests\Matrix\Full\Matrix.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>..\packages\ModernUI.WPF.1.0.3\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
